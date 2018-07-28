@@ -8,11 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+//const cors         = require('cors');
 
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/phone-store', {useMongoClient: true})
+  .connect('mongodb://localhost:27017/phone-store', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -23,6 +24,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+//app.use(cors());
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -52,6 +54,8 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 const index = require('./routes/index');
+const phonesApi = require('./routes/phones-api');
+app.use('/api/phones', phonesApi);
 app.use('/', index);
 
 
