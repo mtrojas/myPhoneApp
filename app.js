@@ -13,7 +13,7 @@ const path         = require('path');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost:27017/phone-store', {useMongoClient: true})
+  .connect('mongodb://MTRojas:12Arandano@ds253821.mlab.com:53821/form-backend', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
